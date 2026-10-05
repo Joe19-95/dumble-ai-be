@@ -1,0 +1,34 @@
+{
+  "name": "dumble",
+  "version": "1.0.0",
+  "description": "bumble for devvs",
+  "keywords": [
+    "js",
+    "node"
+  ],
+  "license": "ISC",
+  "author": "joe jacob thomas",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.1141.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "date-fns": "^4.4.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.1",
+    "node-cron": "^4.6.0",
+    "nodemon": "^3.1.14",
+    "razorpay": "^2.9.8",
+    "socket.io": "^4.8.4",
+    "swagger-ui-express": "^5.0.1",
+    "validator": "^13.15.35"
+  }
+}

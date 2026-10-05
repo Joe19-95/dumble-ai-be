@@ -1,0 +1,73 @@
+const mongoose = require('mongoose')
+const validator = require('validator')
+const jwt = require('jsonwebtoken')
+const userSchema = mongoose.Schema({
+    fname: {
+        type: String,
+        required: true,
+        minLength: 2,
+        maxLength: 10
+    },
+    lname: {
+        type: String,
+        required: true
+    },
+    isPremium: {
+        type: Boolean,
+        default: false
+    },
+    membershipType: {
+        type: String,
+        default: 'silver',
+        validate(val) {
+            if (!['silver', 'gold'].includes(val)) {
+                throw new Error('membership type is not valid')
+            }
+        }
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        validate(val) {
+            if (!validator.isEmail(val)) {
+                throw new Error('Email id is not valid')
+            }
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+
+
+    },
+    photoURL: {
+        type: String
+    },
+    age: {
+        type: Number,
+        min: 5,
+        max: 90
+    },
+    gender: {
+        type: String,
+        validate(val) {
+            if (!['M', 'F', 'O'].includes(val)) {
+                throw new Error('gender is not valid')
+            }
+        }
+    },
+    skills: {
+        type: [String],
+        default: ['jogging']
+    }
+}, { timestamps: true })
+
+userSchema.methods.getJWT = function () {
+    const token = jwt.sign({ _id: this._id }, 'JOE19')
+    return token
+}
+
+module.exports = mongoose.model('User', userSchema)
